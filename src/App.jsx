@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import Message from './Message.jsx';
 import Card from './Card.jsx';
 import Form from './Form.jsx';
+
+const auth0 = require('./auth0.js');
+
 
 const root = document.querySelector('div#root');
 
@@ -38,5 +40,4 @@ class App extends React.Component {
   }
 }
 
-//ReactDOM.render(<App cards={data}/>, root);
 ReactDOM.render(<App />, root);
