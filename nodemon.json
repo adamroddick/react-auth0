@@ -1,0 +1,15 @@
+{
+    "restartable": "rs",
+    "ignore": [
+      ""
+    ],
+    "verbose": true,
+    "watch": [
+      "public/",
+      "server.js"
+    ],
+    "env": {
+      "NODE_ENV": "development"
+    },
+    "ext": "js,json"
+  }
