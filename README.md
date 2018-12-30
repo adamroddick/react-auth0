@@ -1,21 +1,15 @@
-# React Bare Minimum
+# React with Auth0 authentication
 
-A bare minimum setup to work with react and node. Compiling and bundling, nothing else.
+* It compiles ES6 code containing JSX syntax with `babel`
+* It bundles your code to a single JavaScript file with `browserify`
+* It watches you develop and auto bundles with `watchify`
+* It uses a `react` and `react-dom` frontend
+* It uses a `node` and `express` backend
+* It authenticates users with auth0.com
+* It runs on netlify.com
 
-* It compiles ES6 code containing JSX syntax
-* It bundles your code to a single JavaScript file
-
-## How to use it
-
-Just download the files and run:
-
-* `npm i`
-* `npm run build` (`yarn build`) for building the project once
-* `npm run watch` (`yarn watch`) to automatically browserify as you save changes
-* `npm start` (`nodemon server.js`) with a custom nodemon config to watch for changes to public\ to restart node after browserify updates the bundle
-
-
-When the build finishes check out the `public` folder. There is an `index.html` file and a bundled `app.js`.
+## Development
+* Run two terminal windows, in 1 run `npm run watch` to automatically run browserify bundler as you save changes and in terminal 2 run `npm start` (`nodemon server.js`) which uses a custom nodemon config to watch for changes to public\ to restart node after browserify updates the bundle
 
 ## Dependencies
 
@@ -33,7 +27,3 @@ Frontend:
 * `react`
 * `react-dom`
 * `watchify`
-
-## Credit
-
-[Github/krasimir](https://github.com/krasimir/react-bare-minimum/blob/master/package.json)
