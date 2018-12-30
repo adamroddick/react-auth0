@@ -1,12 +1,22 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { Route, Router } from 'react-router-dom';
 import Menu from "./Menu.jsx";
+import Home from './Home.jsx';
+import Callback from './Callback.jsx';
+import Auth from './Auth.js';
+import history from './history.js';
 import Card from "./Card.jsx";
 import Form from "./Form.jsx";
+import ReactDOM from 'react-dom';
 
 const root = document.querySelector("div#root");
+const auth = new Auth();
 
-var fml = {};
+const handleAuthentication = ({location}) => {
+  if (/access_token|id_token|error/.test(location.hash)) {
+    auth.handleAuthentication();
+  }
+}
 
 const CardList = props => {
   return (
@@ -33,7 +43,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Menu />
+        <Menu auth={auth}/>
         <div className="container">
           <div className="row">
             <Form onSubmit={this.createCard} />
@@ -47,4 +57,21 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, root);
+class MainRoutes extends React.Component {
+  render() {
+    return (
+      <Router history={history}>
+        <div>
+          <Route path="/" render={(props) => <App auth={auth} {...props} />} />
+          <Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
+          <Route path="/callback" render={(props) => {
+            handleAuthentication(props);
+            return <Callback {...props} /> 
+          }}/>
+        </div>
+      </Router>
+    );
+  }
+}
+
+ReactDOM.render(<MainRoutes />, root);

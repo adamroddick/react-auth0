@@ -9,6 +9,10 @@ export default class Menu extends React.Component {
       companyName: "Adam's Space Company"
   };
 
+  goTo(route) {
+    this.props.history.replace(`/${route}`)
+  }
+
   login() {
     auth.login();
   }
@@ -26,22 +30,28 @@ export default class Menu extends React.Component {
   }
 
   render() {
-    //const { isAuthenticated } = this.props.auth;
+    const { isAuthenticated } = this.props.auth;
 
     return (
       <Navbar inverse collapseOnSelect>
       <Navbar.Header>
         <Navbar.Brand>
-          <a href="#brand">{this.state.companyName}</a>
+          <a href="#">{this.state.companyName}</a>
         </Navbar.Brand>
         <Navbar.Toggle />
       </Navbar.Header>
         <Nav>
-        <NavItem bsStyle='tabs' activeKey={1}>Home</NavItem>
+        <NavItem href="/"bsStyle='tabs' activeKey={1}>Home</NavItem>
         </Nav>
         <Nav pullRight>
-          <NavItem bsStyle='tabs' activeKey={1} onClick={this.login.bind(this)}>Login</NavItem>
-          <NavItem bsStyle='tabs' activeKey={2} onClick={this.logout.bind(this)}>Logout</NavItem>
+        {
+          !isAuthenticated() && (
+            <NavItem bsStyle='tabs' activeKey={1} onClick={this.login.bind(this)}>Login</NavItem>
+          )}
+          {
+          !isAuthenticated() && (
+            <NavItem bsStyle='tabs' activeKey={2} onClick={this.logout.bind(this)}>Logout</NavItem>
+          )}
         </Nav>
     </Navbar>
     );

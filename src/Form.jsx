@@ -1,5 +1,5 @@
 import React from 'react';
-import makeRequest from './xhrPromise.jsx';
+import makeRequest from './xhrPromise.js';
 import { FormGroup, FormControl, Button } from "react-bootstrap";
 
 export default class Form extends React.Component {
