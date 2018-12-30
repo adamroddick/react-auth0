@@ -46184,7 +46184,7 @@ exports.AUTH_CONFIG = void 0;
 var AUTH_CONFIG = {
   domain: 'adamroddick.au.auth0.com',
   clientId: '5HneCLQFG4CUDywZn5MZIWKb14Jdp2tg',
-  callbackUrl: 'http://localhost:3000/callback'
+  callbackUrl: 'https://elastic-yonath-ae9854.netlify.com/callback'
 };
 exports.AUTH_CONFIG = AUTH_CONFIG;
 
