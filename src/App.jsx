@@ -1,10 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Nav from './Nav.jsx';
 import Card from './Card.jsx';
 import Form from './Form.jsx';
-
-const auth0 = require('./auth0.js');
-
 
 const root = document.querySelector('div#root');
 
@@ -33,6 +31,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <Nav />
         <Form onSubmit={this.createCard}/>
         <CardList cards={this.state.data}/>
       </div>
