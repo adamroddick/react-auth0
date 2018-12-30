@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Callback extends Component {
+export default class Callback extends Component {
   render() {
     const style = {
       position: 'absolute',
@@ -16,11 +16,9 @@ class Callback extends Component {
     }
 
     return (
-      <div style={style}>
+      <div>
         <img src='http://placehold.it/100' alt="loading"/>
       </div>
     );
   }
 }
-
-export default Callback;

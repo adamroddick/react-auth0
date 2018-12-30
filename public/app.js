@@ -45408,6 +45408,8 @@ var _Form = _interopRequireDefault(require("./Form.jsx"));
 
 var _reactDom = _interopRequireDefault(require("react-dom"));
 
+var _Test = _interopRequireDefault(require("./Test.jsx"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -45434,14 +45436,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var root = document.querySelector("div#root");
 var auth = new _Auth.default();
-
-var handleAuthentication = function handleAuthentication(_ref) {
-  var location = _ref.location;
-
-  if (/access_token|id_token|error/.test(location.hash)) {
-    auth.handleAuthentication();
-  }
-};
 
 var CardList = function CardList(props) {
   return _react.default.createElement("div", null, props.cards.map(function (card) {
@@ -45506,6 +45500,14 @@ function (_React$Component) {
   return App;
 }(_react.default.Component);
 
+var handleAuthentication = function handleAuthentication(_ref) {
+  var location = _ref.location;
+
+  if (/access_token|id_token|error/.test(location.hash)) {
+    auth.handleAuthentication();
+  }
+};
+
 var MainRoutes =
 /*#__PURE__*/
 function (_React$Component2) {
@@ -45530,6 +45532,11 @@ function (_React$Component2) {
           }, props));
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
+        path: "/test",
+        render: function render(props) {
+          return _react.default.createElement(_Test.default, null);
+        }
+      }), _react.default.createElement(_reactRouterDom.Route, {
         path: "/home",
         render: function render(props) {
           return _react.default.createElement(_Home.default, _extends({
@@ -45539,7 +45546,7 @@ function (_React$Component2) {
       }), _react.default.createElement(_reactRouterDom.Route, {
         path: "/callback",
         render: function render(props) {
-          handleAuthentication(props);
+          //handleAuthentication(props);
           return _react.default.createElement(_Callback.default, props);
         }
       })));
@@ -45551,7 +45558,7 @@ function (_React$Component2) {
 
 _reactDom.default.render(_react.default.createElement(MainRoutes, null), root);
 
-},{"./Auth.js":332,"./Callback.jsx":333,"./Card.jsx":334,"./Form.jsx":335,"./Home.jsx":336,"./Menu.jsx":337,"./history.js":339,"react":319,"react-dom":264,"react-router-dom":298}],332:[function(require,module,exports){
+},{"./Auth.js":332,"./Callback.jsx":333,"./Card.jsx":334,"./Form.jsx":335,"./Home.jsx":336,"./Menu.jsx":337,"./Test.jsx":338,"./history.js":340,"react":319,"react-dom":264,"react-router-dom":298}],332:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45691,7 +45698,7 @@ function () {
 
 exports.default = Auth;
 
-},{"./auth0-variables.js":338,"./history.js":339,"auth0-js":19}],333:[function(require,module,exports){
+},{"./auth0-variables.js":339,"./history.js":340,"auth0-js":19}],333:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45747,9 +45754,7 @@ function (_Component) {
         right: 0,
         backgroundColor: 'white'
       };
-      return _react.default.createElement("div", {
-        style: style
-      }, _react.default.createElement("img", {
+      return _react.default.createElement("div", null, _react.default.createElement("img", {
         src: "http://placehold.it/100",
         alt: "loading"
       }));
@@ -45759,8 +45764,7 @@ function (_Component) {
   return Callback;
 }(_react.Component);
 
-var _default = Callback;
-exports.default = _default;
+exports.default = Callback;
 
 },{"react":319}],334:[function(require,module,exports){
 "use strict";
@@ -45929,7 +45933,7 @@ function (_React$Component) {
 exports.default = Form;
 Form.propTypes = {};
 
-},{"./xhrPromise.js":340,"react":319,"react-bootstrap":252}],336:[function(require,module,exports){
+},{"./xhrPromise.js":341,"react":319,"react-bootstrap":252}],336:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45993,8 +45997,7 @@ function (_Component) {
   return Home;
 }(_react.Component);
 
-var _default = Home;
-exports.default = _default;
+exports.default = Home;
 
 },{"react":319}],337:[function(require,module,exports){
 "use strict";
@@ -46121,6 +46124,61 @@ exports.default = Menu;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var Test =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Test, _Component);
+
+  function Test() {
+    _classCallCheck(this, Test);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Test).apply(this, arguments));
+  }
+
+  _createClass(Test, [{
+    key: "render",
+    value: function render() {
+      return _react.default.createElement("div", {
+        className: "container"
+      }, _react.default.createElement("h4", null, "Test"));
+    }
+  }]);
+
+  return Test;
+}(_react.Component);
+
+exports.default = Test;
+
+},{"react":319}],339:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.AUTH_CONFIG = void 0;
 var AUTH_CONFIG = {
   domain: 'adamroddick.au.auth0.com',
@@ -46129,7 +46187,7 @@ var AUTH_CONFIG = {
 };
 exports.AUTH_CONFIG = AUTH_CONFIG;
 
-},{}],339:[function(require,module,exports){
+},{}],340:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46145,7 +46203,7 @@ var _default = (0, _createBrowserHistory.default)();
 
 exports.default = _default;
 
-},{"history/createBrowserHistory":136}],340:[function(require,module,exports){
+},{"history/createBrowserHistory":136}],341:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

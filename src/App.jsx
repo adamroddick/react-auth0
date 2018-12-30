@@ -8,15 +8,10 @@ import history from './history.js';
 import Card from "./Card.jsx";
 import Form from "./Form.jsx";
 import ReactDOM from 'react-dom';
+import Test from './Test.jsx';
 
 const root = document.querySelector("div#root");
 const auth = new Auth();
-
-const handleAuthentication = ({location}) => {
-  if (/access_token|id_token|error/.test(location.hash)) {
-    auth.handleAuthentication();
-  }
-}
 
 const CardList = props => {
   return (
@@ -57,15 +52,22 @@ class App extends React.Component {
   }
 }
 
+const handleAuthentication = ({location}) => {
+  if (/access_token|id_token|error/.test(location.hash)) {
+    auth.handleAuthentication();
+  }
+}
+
 class MainRoutes extends React.Component {
   render() {
     return (
       <Router history={history}>
         <div>
           <Route path="/" render={(props) => <App auth={auth} {...props} />} />
+          <Route path="/test" render={(props) => <Test />} />
           <Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
           <Route path="/callback" render={(props) => {
-            handleAuthentication(props);
+            //handleAuthentication(props);
             return <Callback {...props} /> 
           }}/>
         </div>

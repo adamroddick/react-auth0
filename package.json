@@ -9,7 +9,8 @@
   "scripts": {
     "start": "nodemon server.js",
     "build": "browserify ./src/App.jsx -o ./public/app.js -t babelify",
-    "watch": "watchify ./src/App.jsx -o ./public/app.js -t babelify -v"
+    "watch": "watchify ./src/App.jsx -o ./public/app.js -t babelify -v",
+    "debug": "DEBUG=express:* node server.js"
   },
   "author": "",
   "license": "MIT",
