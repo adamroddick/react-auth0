@@ -1,0 +1,5 @@
+# The following redirect is intended for SPAs that handle routing internally.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
