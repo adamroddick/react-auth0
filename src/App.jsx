@@ -1,41 +1,49 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Nav from './Nav.jsx';
-import Card from './Card.jsx';
-import Form from './Form.jsx';
+import React from "react";
+import ReactDOM from "react-dom";
+import Menu from "./Menu.jsx";
+import Card from "./Card.jsx";
+import Form from "./Form.jsx";
 
-const root = document.querySelector('div#root');
+const root = document.querySelector("div#root");
 
-var fml = {}
+var fml = {};
 
-const CardList = (props) => {
-    return (
-      <div>
-          {props.cards.map(card => <Card {...card} />)}
-        </div>
-    );
-}
+const CardList = props => {
+  return (
+    <div>
+      {props.cards.map(card => (
+        <Card {...card} />
+      ))}
+    </div>
+  );
+};
 
 class App extends React.Component {
   state = {
     data: []
-  }
+  };
 
-  createCard = (json) => {
-    json.key = json.id // to satisfy Reacts requirement for a unique key
+  createCard = json => {
+    json.key = json.id; // to satisfy Reacts requirement for a unique key
     this.setState(prevState => ({
       data: prevState.data.concat(json)
-    }))
-  }
+    }));
+  };
 
   render() {
     return (
       <div>
-        <Nav />
-        <Form onSubmit={this.createCard}/>
-        <CardList cards={this.state.data}/>
+        <Menu />
+        <div className="container">
+          <div className="row">
+            <Form onSubmit={this.createCard} />
+          </div>
+          <div className="row">
+            <CardList cards={this.state.data} />
+          </div>
+        </div>
       </div>
-    )
+    );
   }
 }
 

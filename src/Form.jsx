@@ -1,5 +1,6 @@
 import React from 'react';
 import makeRequest from './xhrPromise.jsx';
+import { FormGroup, FormControl, Button } from "react-bootstrap";
 
 export default class Form extends React.Component {
   state = {
@@ -20,14 +21,19 @@ export default class Form extends React.Component {
   
   render() {
     return (
+      <div className="col-sm-4">
       <form onSubmit={this.submitAction}>
-        <input 
+      <FormGroup>
+        <FormControl
+          type="text"
           value={this.state.userName}
-          onChange={(event) => this.setState({ userName: event.target.value}) } 
-          type="text" placeholder="adamroddick">
-        </input>
-        <button>Add</button>
-      </form>
+          placeholder="adamroddick"
+          onChange={(event) => this.setState({ userName: event.target.value}) }         />
+        <FormControl.Feedback />
+      </FormGroup>
+      <Button bsStyle="primary" type="submit">Submit</Button>
+    </form>
+    </div>
     )
   }
 }
