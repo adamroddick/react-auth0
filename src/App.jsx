@@ -10,7 +10,6 @@ import Form from "./Form.jsx";
 import ReactDOM from 'react-dom';
 import Test from './Test.jsx';
 
-const root = document.querySelector("div#root");
 const auth = new Auth();
 
 const CardList = props => {
@@ -38,7 +37,6 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Menu auth={auth}/>
         <div className="container">
           <div className="row">
             <Form onSubmit={this.createCard} />
@@ -63,7 +61,7 @@ class MainRoutes extends React.Component {
     return (
       <Router history={history}>
         <div>
-          <Route path="/" exact render={(props) => <App auth={auth} {...props} />} />
+          <Route path="/" exact render={(props) => <App />} />
           <Route path="/test" render={(props) => <Test />} />
           <Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
           <Route path="/callback" render={(props) => {
@@ -76,4 +74,8 @@ class MainRoutes extends React.Component {
   }
 }
 
-ReactDOM.render(<MainRoutes />, root);
+const content = document.querySelector("div#content");
+const nav = document.querySelector("div#nav")
+
+ReactDOM.render(<Menu auth={auth}/>, nav);
+ReactDOM.render(<MainRoutes />, content);

@@ -45434,7 +45434,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var root = document.querySelector("div#root");
 var auth = new _Auth.default();
 
 var CardList = function CardList(props) {
@@ -45481,9 +45480,7 @@ function (_React$Component) {
   _createClass(App, [{
     key: "render",
     value: function render() {
-      return _react.default.createElement("div", null, _react.default.createElement(_Menu.default, {
-        auth: auth
-      }), _react.default.createElement("div", {
+      return _react.default.createElement("div", null, _react.default.createElement("div", {
         className: "container"
       }, _react.default.createElement("div", {
         className: "row"
@@ -45528,9 +45525,7 @@ function (_React$Component2) {
         path: "/",
         exact: true,
         render: function render(props) {
-          return _react.default.createElement(App, _extends({
-            auth: auth
-          }, props));
+          return _react.default.createElement(App, null);
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
         path: "/test",
@@ -45557,7 +45552,14 @@ function (_React$Component2) {
   return MainRoutes;
 }(_react.default.Component);
 
-_reactDom.default.render(_react.default.createElement(MainRoutes, null), root);
+var content = document.querySelector("div#content");
+var nav = document.querySelector("div#nav");
+
+_reactDom.default.render(_react.default.createElement(_Menu.default, {
+  auth: auth
+}), nav);
+
+_reactDom.default.render(_react.default.createElement(MainRoutes, null), content);
 
 },{"./Auth.js":332,"./Callback.jsx":333,"./Card.jsx":334,"./Form.jsx":335,"./Home.jsx":336,"./Menu.jsx":337,"./Test.jsx":338,"./history.js":340,"react":319,"react-dom":264,"react-router-dom":298}],332:[function(require,module,exports){
 "use strict";
