@@ -45526,6 +45526,7 @@ function (_React$Component2) {
         history: _history.default
       }, _react.default.createElement("div", null, _react.default.createElement(_reactRouterDom.Route, {
         path: "/",
+        exact: true,
         render: function render(props) {
           return _react.default.createElement(App, _extends({
             auth: auth
@@ -45546,7 +45547,7 @@ function (_React$Component2) {
       }), _react.default.createElement(_reactRouterDom.Route, {
         path: "/callback",
         render: function render(props) {
-          //handleAuthentication(props);
+          handleAuthentication(props);
           return _react.default.createElement(_Callback.default, props);
         }
       })));

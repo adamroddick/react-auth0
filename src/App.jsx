@@ -63,11 +63,11 @@ class MainRoutes extends React.Component {
     return (
       <Router history={history}>
         <div>
-          <Route path="/" render={(props) => <App auth={auth} {...props} />} />
+          <Route path="/" exact render={(props) => <App auth={auth} {...props} />} />
           <Route path="/test" render={(props) => <Test />} />
           <Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
           <Route path="/callback" render={(props) => {
-            //handleAuthentication(props);
+            handleAuthentication(props);
             return <Callback {...props} /> 
           }}/>
         </div>
