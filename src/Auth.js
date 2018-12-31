@@ -85,7 +85,7 @@ export default class Auth {
     localStorage.removeItem('isLoggedIn');
 
     // navigate to the home route
-    history.replace('/home');
+    history.replace('/');
   }
 
   isAuthenticated() {

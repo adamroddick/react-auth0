@@ -45402,10 +45402,6 @@ var _Auth = _interopRequireDefault(require("./Auth.js"));
 
 var _history = _interopRequireDefault(require("./history.js"));
 
-var _Card = _interopRequireDefault(require("./Card.jsx"));
-
-var _Form = _interopRequireDefault(require("./Form.jsx"));
-
 var _reactDom = _interopRequireDefault(require("react-dom"));
 
 var _Test = _interopRequireDefault(require("./Test.jsx"));
@@ -45438,7 +45434,7 @@ var auth = new _Auth.default();
 
 var CardList = function CardList(props) {
   return _react.default.createElement("div", null, props.cards.map(function (card) {
-    return _react.default.createElement(_Card.default, card);
+    return _react.default.createElement(Card, card);
   }));
 };
 
@@ -45484,13 +45480,11 @@ function (_React$Component) {
         className: "container"
       }, _react.default.createElement("div", {
         className: "row"
-      }, _react.default.createElement(_Form.default, {
-        onSubmit: this.createCard
-      })), _react.default.createElement("div", {
+      }, _react.default.createElement("h2", null, "Welcome to The Stargate Project")), _react.default.createElement("div", {
         className: "row"
-      }, _react.default.createElement(CardList, {
-        cards: this.state.data
-      }))));
+      }, _react.default.createElement("h3", null, "The History")), _react.default.createElement("div", {
+        className: "row"
+      }, _react.default.createElement("h3", null, "The Objective"))));
     }
   }]);
 
@@ -45565,7 +45559,7 @@ _reactDom.default.render(_react.default.createElement(_Menu.default, {
 
 _reactDom.default.render(_react.default.createElement(MainRoutes, null), content);
 
-},{"./Auth.js":332,"./Callback.jsx":333,"./Card.jsx":334,"./Form.jsx":335,"./Home.jsx":336,"./Menu.jsx":337,"./Test.jsx":338,"./history.js":340,"react":319,"react-dom":264,"react-router-dom":298}],332:[function(require,module,exports){
+},{"./Auth.js":332,"./Callback.jsx":333,"./Home.jsx":334,"./Menu.jsx":335,"./Test.jsx":336,"./history.js":338,"react":319,"react-dom":264,"react-router-dom":298}],332:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45688,7 +45682,7 @@ function () {
 
       localStorage.removeItem('isLoggedIn'); // navigate to the home route
 
-      _history.default.replace('/home');
+      _history.default.replace('/');
     }
   }, {
     key: "isAuthenticated",
@@ -45705,7 +45699,7 @@ function () {
 
 exports.default = Auth;
 
-},{"./auth0-variables.js":339,"./history.js":340,"auth0-js":19}],333:[function(require,module,exports){
+},{"./auth0-variables.js":337,"./history.js":338,"auth0-js":19}],333:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45761,10 +45755,7 @@ function (_Component) {
         right: 0,
         backgroundColor: 'white'
       };
-      return _react.default.createElement("div", null, _react.default.createElement("img", {
-        src: "http://placehold.it/100",
-        alt: "loading"
-      }));
+      return _react.default.createElement("div", null);
     }
   }]);
 
@@ -45774,173 +45765,6 @@ function (_Component) {
 exports.default = Callback;
 
 },{"react":319}],334:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _propTypes = _interopRequireDefault(require("prop-types"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-var Card =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(Card, _React$Component);
-
-  function Card() {
-    _classCallCheck(this, Card);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(Card).apply(this, arguments));
-  }
-
-  _createClass(Card, [{
-    key: "render",
-    value: function render() {
-      return _react.default.createElement("div", null, _react.default.createElement("h3", null, this.props.login), _react.default.createElement("img", {
-        width: "75",
-        src: this.props.avatar_url
-      }));
-    }
-  }]);
-
-  return Card;
-}(_react.default.Component);
-
-exports.default = Card;
-Card.propTypes = {
-  login: _propTypes.default.string.isRequired,
-  avatar_url: _propTypes.default.string.isRequired
-};
-
-},{"prop-types":155,"react":319}],335:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _xhrPromise = _interopRequireDefault(require("./xhrPromise.js"));
-
-var _reactBootstrap = require("react-bootstrap");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var Form =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(Form, _React$Component);
-
-  function Form() {
-    var _getPrototypeOf2;
-
-    var _this;
-
-    _classCallCheck(this, Form);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Form)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
-      userName: ""
-    });
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "submitAction", function (event) {
-      event.preventDefault();
-      var url = "https://api.github.com/users/" + _this.state.userName;
-      var create = _this.props.onSubmit;
-      (0, _xhrPromise.default)("GET", url).then(function (json) {
-        create(JSON.parse(json.response));
-      });
-
-      _this.setState({
-        userName: ''
-      });
-    });
-
-    return _this;
-  }
-
-  _createClass(Form, [{
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      return _react.default.createElement("div", {
-        className: "col-sm-4"
-      }, _react.default.createElement("form", {
-        onSubmit: this.submitAction
-      }, _react.default.createElement(_reactBootstrap.FormGroup, null, _react.default.createElement(_reactBootstrap.FormControl, {
-        type: "text",
-        value: this.state.userName,
-        placeholder: "adamroddick",
-        onChange: function onChange(event) {
-          return _this2.setState({
-            userName: event.target.value
-          });
-        }
-      }), _react.default.createElement(_reactBootstrap.FormControl.Feedback, null)), _react.default.createElement(_reactBootstrap.Button, {
-        className: "primary",
-        type: "submit"
-      }, "Submit")));
-    }
-  }]);
-
-  return Form;
-}(_react.default.Component);
-
-exports.default = Form;
-Form.propTypes = {};
-
-},{"./xhrPromise.js":341,"react":319,"react-bootstrap":252}],336:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46165,7 +45989,7 @@ function (_Component) {
 
 exports.default = Home;
 
-},{"react":319}],337:[function(require,module,exports){
+},{"react":319}],335:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46222,7 +46046,7 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Menu)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
-      companyName: "Adam's Space Company"
+      companyName: "Adam's Stargate Project"
     });
 
     return _this;
@@ -46284,7 +46108,7 @@ function (_React$Component) {
 
 exports.default = Menu;
 
-},{"./Auth.js":332,"react":319,"react-bootstrap":252}],338:[function(require,module,exports){
+},{"./Auth.js":332,"react":319,"react-bootstrap":252}],336:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46339,7 +46163,7 @@ function (_Component) {
 
 exports.default = Test;
 
-},{"react":319}],339:[function(require,module,exports){
+},{"react":319}],337:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46354,7 +46178,7 @@ var AUTH_CONFIG = {
 };
 exports.AUTH_CONFIG = AUTH_CONFIG;
 
-},{}],340:[function(require,module,exports){
+},{}],338:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46370,38 +46194,4 @@ var _default = (0, _createBrowserHistory.default)();
 
 exports.default = _default;
 
-},{"history/createBrowserHistory":136}],341:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var makeRequest = function makeRequest(method, url) {
-  var xhr2 = new XMLHttpRequest();
-  return new Promise(function (resolve, reject) {
-    xhr2.onreadystatechange = function () {
-      if (xhr2.readyState !== 4) return;
-
-      if (xhr2.status >= 200 && xhr2.status < 300) {
-        // console.log("makeRequest success");
-        resolve(xhr2);
-      } else {
-        // console.log("makeRequest failed");
-        reject({
-          status: xhr2.status,
-          statusText: xhr2.statusText
-        });
-      }
-    };
-
-    xhr2.open(method, url);
-    xhr2.send();
-  });
-};
-
-var _default = makeRequest;
-exports.default = _default;
-
-},{}]},{},[331]);
+},{"history/createBrowserHistory":136}]},{},[331]);

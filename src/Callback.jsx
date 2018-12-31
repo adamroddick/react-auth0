@@ -17,7 +17,6 @@ export default class Callback extends Component {
 
     return (
       <div>
-        <img src='http://placehold.it/100' alt="loading"/>
       </div>
     );
   }

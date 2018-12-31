@@ -5,8 +5,8 @@ import Home from './Home.jsx';
 import Callback from './Callback.jsx';
 import Auth from './Auth.js';
 import history from './history.js';
-import Card from "./Card.jsx";
-import Form from "./Form.jsx";
+//import Card from "./Card.jsx";
+//import Form from "./Form.jsx";
 import ReactDOM from 'react-dom';
 import Test from './Test.jsx';
 
@@ -39,10 +39,13 @@ class App extends React.Component {
       <div>
         <div className="container">
           <div className="row">
-            <Form onSubmit={this.createCard} />
+            <h2>Welcome to The Stargate Project</h2>
           </div>
           <div className="row">
-            <CardList cards={this.state.data} />
+            <h3>The History</h3>
+          </div>
+          <div className="row">
+            <h3>The Objective</h3>
           </div>
         </div>
       </div>

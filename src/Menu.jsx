@@ -6,7 +6,7 @@ const auth = new Auth();
 
 export default class Menu extends React.Component {
   state = {
-      companyName: "Adam's Space Company"
+      companyName: "Adam's Stargate Project"
   };
 
   goTo(route) {
