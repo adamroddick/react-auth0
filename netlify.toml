@@ -3,3 +3,6 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+[context.production]
+  environment = { CALLBACK_URL = 'https://elastic-yonath-ae9854.netlify.com/callback'}
