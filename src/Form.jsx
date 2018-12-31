@@ -31,7 +31,7 @@ export default class Form extends React.Component {
           onChange={(event) => this.setState({ userName: event.target.value}) }         />
         <FormControl.Feedback />
       </FormGroup>
-      <Button bsStyle="primary" type="submit">Submit</Button>
+      <Button className="primary" type="submit">Submit</Button>
     </form>
     </div>
     )
