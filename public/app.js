@@ -45525,12 +45525,16 @@ function (_React$Component2) {
         path: "/",
         exact: true,
         render: function render(props) {
-          return _react.default.createElement(App, null);
+          return _react.default.createElement(App, {
+            auth: auth
+          });
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
         path: "/test",
         render: function render(props) {
-          return _react.default.createElement(_Test.default, null);
+          return _react.default.createElement(_Test.default, {
+            auth: auth
+          });
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
         path: "/home",
@@ -45924,7 +45928,7 @@ function (_React$Component) {
           });
         }
       }), _react.default.createElement(_reactBootstrap.FormControl.Feedback, null)), _react.default.createElement(_reactBootstrap.Button, {
-        bsStyle: "primary",
+        className: "primary",
         type: "submit"
       }, "Submit")));
     }
@@ -45958,13 +45962,172 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var Game =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(Game, _React$Component);
+
+  function Game() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    _classCallCheck(this, Game);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Game)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      metal: 0,
+      wood: 0
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "metalCounter", function (incrementValue) {
+      _this.setState(function (prevState) {
+        return {
+          metal: prevState.metal + incrementValue
+        };
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "woodCounter", function (incrementValue) {
+      _this.setState(function (prevState) {
+        return {
+          wood: prevState.wood + incrementValue
+        };
+      });
+    });
+
+    return _this;
+  }
+
+  _createClass(Game, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var state = JSON.parse(window.localStorage.getItem('gameState'));
+      console.log('1');
+      console.log(state);
+
+      if (state) {
+        this.setState(state);
+      }
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      var state = this.state;
+      console.log('2');
+      console.log(state);
+      window.localStorage.setItem('gameState', JSON.stringify(state));
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var div = _react.default.createElement("div", null, _react.default.createElement(Resource, {
+        incrementValue: 1,
+        onClickFunction: this.metalCounter,
+        counter: this.state.metal,
+        resource: "metal"
+      }), _react.default.createElement(Resource, {
+        incrementValue: 10,
+        onClickFunction: this.metalCounter,
+        counter: this.state.metal,
+        resource: "metal"
+      }), _react.default.createElement(ResourceCounter, {
+        counter: this.state.metal,
+        resource: "metal"
+      }), _react.default.createElement(Resource, {
+        incrementValue: 1,
+        onClickFunction: this.woodCounter,
+        counter: this.state.wood,
+        resource: "wood"
+      }), _react.default.createElement(Resource, {
+        incrementValue: 10,
+        onClickFunction: this.woodCounter,
+        counter: this.state.wood,
+        resource: "wood"
+      }), _react.default.createElement(ResourceCounter, {
+        counter: this.state.wood,
+        resource: "wood"
+      }));
+
+      return div;
+    }
+  }]);
+
+  return Game;
+}(_react.default.Component);
+
+var ResourceCounter =
+/*#__PURE__*/
+function (_React$Component2) {
+  _inherits(ResourceCounter, _React$Component2);
+
+  function ResourceCounter() {
+    _classCallCheck(this, ResourceCounter);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(ResourceCounter).apply(this, arguments));
+  }
+
+  _createClass(ResourceCounter, [{
+    key: "render",
+    value: function render() {
+      return _react.default.createElement("div", null, this.props.resource, ": ", this.props.counter);
+    }
+  }]);
+
+  return ResourceCounter;
+}(_react.default.Component);
+
+var Resource =
+/*#__PURE__*/
+function (_React$Component3) {
+  _inherits(Resource, _React$Component3);
+
+  function Resource() {
+    var _getPrototypeOf3;
+
+    var _this2;
+
+    _classCallCheck(this, Resource);
+
+    for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      args[_key2] = arguments[_key2];
+    }
+
+    _this2 = _possibleConstructorReturn(this, (_getPrototypeOf3 = _getPrototypeOf(Resource)).call.apply(_getPrototypeOf3, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this2)), "handleClick", function () {
+      _this2.props.onClickFunction(_this2.props.incrementValue);
+    });
+
+    return _this2;
+  }
+
+  _createClass(Resource, [{
+    key: "render",
+    value: function render() {
+      return _react.default.createElement("button", {
+        onClick: this.handleClick
+      }, this.props.resource, " +", this.props.incrementValue);
+    }
+  }]);
+
+  return Resource;
+}(_react.default.Component);
 
 var Home =
 /*#__PURE__*/
@@ -45988,7 +46151,7 @@ function (_Component) {
       var isAuthenticated = this.props.auth.isAuthenticated;
       return _react.default.createElement("div", {
         className: "container"
-      }, isAuthenticated() && _react.default.createElement("h4", null, "You are logged in!"), !isAuthenticated() && _react.default.createElement("h4", null, "You are not logged in! Please", ' ', _react.default.createElement("a", {
+      }, isAuthenticated() && _react.default.createElement(Game, null), !isAuthenticated() && _react.default.createElement("h4", null, "You are not logged in! Please", ' ', _react.default.createElement("a", {
         style: {
           cursor: 'pointer'
         },
@@ -46100,16 +46263,16 @@ function (_React$Component) {
         href: "#"
       }, this.state.companyName)), _react.default.createElement(_reactBootstrap.Navbar.Toggle, null)), _react.default.createElement(_reactBootstrap.Nav, null, _react.default.createElement(_reactBootstrap.NavItem, {
         href: "/",
-        bsStyle: "tabs",
+        className: "tabs",
         activeKey: 1
       }, "Home")), _react.default.createElement(_reactBootstrap.Nav, {
         pullRight: true
       }, !isAuthenticated() && _react.default.createElement(_reactBootstrap.NavItem, {
-        bsStyle: "tabs",
+        className: "tabs",
         activeKey: 1,
         onClick: this.login.bind(this)
       }, "Login"), !isAuthenticated() && _react.default.createElement(_reactBootstrap.NavItem, {
-        bsStyle: "tabs",
+        className: "tabs",
         activeKey: 2,
         onClick: this.logout.bind(this)
       }, "Logout")));
@@ -46186,7 +46349,8 @@ exports.AUTH_CONFIG = void 0;
 var AUTH_CONFIG = {
   domain: 'adamroddick.au.auth0.com',
   clientId: '5HneCLQFG4CUDywZn5MZIWKb14Jdp2tg',
-  callbackUrl: 'https://elastic-yonath-ae9854.netlify.com/callback'
+  //callbackUrl: 'https://elastic-yonath-ae9854.netlify.com/callback'
+  callbackUrl: 'http://localhost:3000/callback'
 };
 exports.AUTH_CONFIG = AUTH_CONFIG;
 
