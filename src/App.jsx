@@ -61,8 +61,8 @@ class MainRoutes extends React.Component {
     return (
       <Router history={history}>
         <div>
-          <Route path="/" exact render={(props) => <App />} />
-          <Route path="/test" render={(props) => <Test />} />
+          <Route path="/" exact render={(props) => <App auth={auth}/>} />
+          <Route path="/test" render={(props) => <Test auth={auth}/>} />
           <Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
           <Route path="/callback" render={(props) => {
             handleAuthentication(props);
