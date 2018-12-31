@@ -41,16 +41,16 @@ export default class Menu extends React.Component {
         <Navbar.Toggle />
       </Navbar.Header>
         <Nav>
-        <NavItem href="/"bsStyle='tabs' activeKey={1}>Home</NavItem>
+        <NavItem href="/"className='tabs' activeKey={1}>Home</NavItem>
         </Nav>
         <Nav pullRight>
         {
           !isAuthenticated() && (
-            <NavItem bsStyle='tabs' activeKey={1} onClick={this.login.bind(this)}>Login</NavItem>
+            <NavItem className='tabs' activeKey={1} onClick={this.login.bind(this)}>Login</NavItem>
           )}
           {
           !isAuthenticated() && (
-            <NavItem bsStyle='tabs' activeKey={2} onClick={this.logout.bind(this)}>Logout</NavItem>
+            <NavItem className='tabs' activeKey={2} onClick={this.logout.bind(this)}>Logout</NavItem>
           )}
         </Nav>
     </Navbar>
