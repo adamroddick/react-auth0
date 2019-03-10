@@ -51,7 +51,7 @@ export default class Menu extends React.Component {
         <Navbar.Toggle />
       </Navbar.Header>
         <Nav>
-        <NavItem href="/"className='tabs' activeKey={1}>Home</NavItem>
+        <NavItem href="/home"className='tabs' activeKey={1}>Home</NavItem>
         </Nav>
         <Nav pullRight>
             <AuthButton />

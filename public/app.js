@@ -45951,7 +45951,7 @@ function (_React$Component2) {
       }, _react.default.createElement(_reactBootstrap.Navbar.Header, null, _react.default.createElement(_reactBootstrap.Navbar.Brand, null, _react.default.createElement("a", {
         href: "#"
       }, _textContent.default.companyName)), _react.default.createElement(_reactBootstrap.Navbar.Toggle, null)), _react.default.createElement(_reactBootstrap.Nav, null, _react.default.createElement(_reactBootstrap.NavItem, {
-        href: "/",
+        href: "/home",
         className: "tabs",
         activeKey: 1
       }, "Home")), _react.default.createElement(_reactBootstrap.Nav, {
