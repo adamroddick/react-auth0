@@ -1,42 +1,52 @@
 import React from "react";
 import { Nav, Navbar, NavItem } from "react-bootstrap";
-import Auth from "./Auth.js";
+import textContent from './textContent.js'
 
-const auth = new Auth();
+//TODO get netlifyAuth from App.jsx instead of declaring it twice
+const netlifyAuth = {
+  isAuthenticated: false,
+  user: null,
+  authenticate(callback) {
+    this.isAuthenticated = true;
+    netlifyIdentity.open();
+    netlifyIdentity.on('login', user => {
+      this.user = user;
+      callback(user);
+    });
+  },
+  signout(callback) {
+    this.isAuthenticated = false;
+    netlifyIdentity.logout();
+    netlifyIdentity.on('logout', () => {
+      this.user = null;
+      callback();
+    });
+  }
+};
+
+class AuthButton extends React.Component {
+  render() {
+    return(
+      netlifyAuth.isAuthenticated ? (
+        <NavItem className='tabs' activeKey={1} 
+        onClick={() => {netlifyAuth.signout();}}>
+        Logout</NavItem>
+      ) : (
+        <NavItem className='tabs' activeKey={2} 
+        onClick={() => {netlifyAuth.authenticate(() => {this.setState({ redirectToReferrer: true });});}}>
+        Login</NavItem>
+      )
+    )
+  }
+}
 
 export default class Menu extends React.Component {
-  state = {
-      companyName: "Adam's Stargate Project"
-  };
-
-  goTo(route) {
-    this.props.history.replace(`/${route}`)
-  }
-
-  login() {
-    auth.login();
-  }
-
-  logout() {
-    auth.logout();
-  }
-
-  componentDidMount() {
-    const { renewSession } = auth;
-
-    if (localStorage.getItem('isLoggedIn') === 'true') {
-      renewSession();
-    }
-  }
-
   render() {
-    const { isAuthenticated } = this.props.auth;
-
     return (
       <Navbar inverse collapseOnSelect>
       <Navbar.Header>
         <Navbar.Brand>
-          <a href="#">{this.state.companyName}</a>
+          <a href="#">{textContent.companyName}</a>
         </Navbar.Brand>
         <Navbar.Toggle />
       </Navbar.Header>
@@ -44,14 +54,7 @@ export default class Menu extends React.Component {
         <NavItem href="/"className='tabs' activeKey={1}>Home</NavItem>
         </Nav>
         <Nav pullRight>
-        {
-          !isAuthenticated() && (
-            <NavItem className='tabs' activeKey={1} onClick={this.login.bind(this)}>Login</NavItem>
-          )}
-          {
-          !isAuthenticated() && (
-            <NavItem className='tabs' activeKey={2} onClick={this.logout.bind(this)}>Logout</NavItem>
-          )}
+            <AuthButton />
         </Nav>
     </Navbar>
     );

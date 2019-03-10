@@ -1,26 +1,80 @@
 import React from "react";
-import { Route, Router } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Menu from "./Menu.jsx";
-import Home from './Home.jsx';
-import Callback from './Callback.jsx';
-import Auth from './Auth.js';
-import history from './history.js';
-//import Card from "./Card.jsx";
+import Game from './Game.jsx';
 //import Form from "./Form.jsx";
 import ReactDOM from 'react-dom';
-import Test from './Test.jsx';
+//import Test from './Test.jsx';
+import textContent from './textContent.js'
+import netlifyIdentity from 'netlify-identity-widget';
 
-const auth = new Auth();
+window.netlifyIdentity = netlifyIdentity;
+netlifyIdentity.init();
 
-const CardList = props => {
-  return (
-    <div>
-      {props.cards.map(card => (
-        <Card {...card} />
-      ))}
-    </div>
-  );
+class Login extends React.Component {
+  state = { redirectToReferrer: false };
+
+  login = () => {
+    netlifyAuth.authenticate(() => {
+      this.setState({ redirectToReferrer: true });
+    });
+  };
+
+  render() {
+    {/*let { from } = this.props.location.state || { from: { pathname: '/' } };*/}
+    let { redirectToReferrer } = this.state;
+
+    if (redirectToReferrer) return <Redirect to={from} />;
+
+    return (
+      <div>
+        <p>You must log in to view the page at {from.pathname}</p>
+        <button onClick={this.login}>Log in</button>
+      </div>
+    );
+  }
+}
+
+const netlifyAuth = {
+  isAuthenticated: false,
+  user: null,
+  authenticate(callback) {
+    this.isAuthenticated = true;
+    netlifyIdentity.open();
+    netlifyIdentity.on('login', user => {
+      this.user = user;
+      callback(user);
+    });
+  },
+  signout(callback) {
+    this.isAuthenticated = false;
+    netlifyIdentity.logout();
+    netlifyIdentity.on('logout', () => {
+      this.user = null;
+      callback();
+    });
+  }
 };
+
+class Intro extends React.Component {
+  render() {
+    return (
+    <div className="container">
+      <div className="row">
+        <h2>{textContent.introHeading}</h2>
+      </div>
+      <div className="row">
+        <h3>{textContent.homeHistoryHeading}</h3>
+        <p>{textContent.homeHistory}</p>
+      </div>
+      <div className="row">
+        <h3>{textContent.homeObjectiveHeading}</h3>
+        <p>{textContent.homeObjective}</p>
+      </div>
+    </div>
+    )
+  }
+}
 
 class App extends React.Component {
   state = {
@@ -36,41 +90,36 @@ class App extends React.Component {
 
   render() {
     return (
+      netlifyAuth.isAuthenticated ? (
       <div>
         <div className="container">
-          <div className="row">
-            <h2>Welcome to The Stargate Project</h2>
-          </div>
-          <div className="row">
-            <h3>The History</h3>
-          </div>
-          <div className="row">
-            <h3>The Objective</h3>
+          {
+              <Game />  
+          }
           </div>
         </div>
+        ) : (
+      <div>
+        <div className="container">
+          {
+              <Intro />
+          }
+        </div>
       </div>
+      )
     );
-  }
-}
-
-const handleAuthentication = ({location}) => {
-  if (/access_token|id_token|error/.test(location.hash)) {
-    auth.handleAuthentication();
   }
 }
 
 class MainRoutes extends React.Component {
   render() {
     return (
-      <Router history={history}>
+      <Router>
         <div>
-          <Route path="/" exact render={(props) => <App auth={auth}/>} />
-          <Route path="/test" render={(props) => <Test auth={auth}/>} />
-          <Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
-          <Route path="/callback" render={(props) => {
-            handleAuthentication(props);
-            return <Callback {...props} /> 
-          }}/>
+          <Route path="/" render={(props) => <App />} />
+          {/*<Route path="/test" render={(props) => <Test />} /> */}
+          <Route path="/home" render={(props) => <Game {...props} />} />
+          <Route path="/login" component={Login} />
         </div>
       </Router>
     );
@@ -80,5 +129,5 @@ class MainRoutes extends React.Component {
 const content = document.querySelector("div#content");
 const nav = document.querySelector("div#nav")
 
-ReactDOM.render(<Menu auth={auth}/>, nav);
+ReactDOM.render(<Menu />, nav);
 ReactDOM.render(<MainRoutes />, content);

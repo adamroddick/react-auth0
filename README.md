@@ -1,11 +1,11 @@
-# React with Auth0 authentication
+# The Ancients
 
 * It compiles ES6 code containing JSX syntax with `babel`
 * It bundles your code to a single JavaScript file with `browserify`
 * It watches you develop and auto bundles with `watchify`
 * It uses a `react` and `react-dom` frontend
 * It uses a `node` and `express` backend
-* It authenticates users with auth0.com
+* It authenticates users with netlify identity
 * It runs on netlify.com
 
 ## Development
